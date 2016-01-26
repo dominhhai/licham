@@ -1,8 +1,8 @@
-# amlich - Lunar Calendar
+# licham - Lunar Calendar
 
 CLI and API for [Lunar Calendar](https://en.wikipedia.org/wiki/Lunar_calendar) power by Nodejs.
 
-[![build status](https://secure.travis-ci.org/dominhhai/amlich.svg)](http://travis-ci.org/dominhhai/amlich) [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+[![build status](https://secure.travis-ci.org/dominhhai/licham.svg)](http://travis-ci.org/dominhhai/licham) [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
 # Show case
 ## Command Line
@@ -11,10 +11,10 @@ CLI and API for [Lunar Calendar](https://en.wikipedia.org/wiki/Lunar_calendar) p
 
 # Installation
 Global scope:
-`npm install amlich -g`
+`npm install licham -g`
 
 Local scope:
-`npm install amlich --save`
+`npm install licham --save`
 
 # Usage
 ## Command Line
@@ -34,4 +34,4 @@ Feel free to send your PRs!
 ✌(-‿-)✌ You can use [git-u](https://www.npmjs.com/package/git-u) for quicker clone: `git-u your_name your_repo`
 
 # License
-[MIT](https://github.com/dominhhai/amlich/blob/master/LICENSE)
+[MIT](https://github.com/dominhhai/licham/blob/master/LICENSE)
