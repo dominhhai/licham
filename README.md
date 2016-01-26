@@ -1,6 +1,6 @@
 # amlich - Lunar Calendar
 
-CLI and API for (Lunar Calendar)[https://en.wikipedia.org/wiki/Lunar_calendar] power by Nodejs.
+CLI and API for [Lunar Calendar](https://en.wikipedia.org/wiki/Lunar_calendar) power by Nodejs.
 
 [![build status](https://secure.travis-ci.org/dominhhai/amlich.svg)](http://travis-ci.org/dominhhai/amlich) [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
