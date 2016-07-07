@@ -2,7 +2,7 @@
 
 CLI and API for [Lunar Calendar](https://en.wikipedia.org/wiki/Lunar_calendar) power by Nodejs.
 
-[![build status](https://secure.travis-ci.org/dominhhai/licham.svg)](http://travis-ci.org/dominhhai/licham) [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+[![build status](https://secure.travis-ci.org/dominhhai/licham.svg)](http://travis-ci.org/dominhhai/licham) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 # Show case
 ## Command Line
@@ -18,6 +18,12 @@ Local scope:
 
 # Usage
 ## Command Line
+CLI options
+
+    -h, --help          output usage information
+    -V, --version       output the version number
+    -d, --date [date]   show calendar for specific date (ddMMyyyy|MMyyyy|yyyy)
+    -y, --year          show year calendar
 
 ## API
 
