@@ -1,16 +1,27 @@
-import getLunarDate, { getLunarMonth } from './lib/lunar'
+import getLunarDate, {
+  getLunarMonth,
+  getGioHoangDao,
+  getTietKhi,
+  getDayOfWeek,
+  getCanChi
+} from './lib/lunar'
 
-export default function print () {
-  var today = new Date()
-  var curYear = today.getFullYear()
-  var curMonth = today.getMonth()
-  var curDay = today.getDay()
+export default function print (opt = {}) {
+  opt = Object.assign({
+    mode: 'm',
+    date: new Date()
+  }, opt)
 
-  console.log(`today: ${curYear}/${curMonth}/${curDay}`)
+  var date = opt.date
+  var year = date.getFullYear()
+  var month = date.getMonth()
+  var day = date.getDay()
 
-  var day = getLunarDate(curDay, curMonth, curYear)
-  console.log('today lunar date:\n', day)
+  console.log(`${day}/${month}/${year}`)
 
-  var month = getLunarMonth(curMonth, curYear)
-  console.log('this lunar month:\n', month)
+  var day = getLunarDate(day, month, year)
+  console.log('Lunar:\n', day)
+
+  var month = getLunarMonth(month, year)
+  console.log('Lunar month:\n', month)
 }
