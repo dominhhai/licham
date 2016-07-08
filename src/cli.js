@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-require('babel-register')
+// require('babel-register')
 const program = require('commander')
 const lunar = require('./index').default
 
