@@ -1,6 +1,6 @@
 {
   "name": "licham",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Vietnamese Calendar",
   "main": "index.js",
   "bin": {
