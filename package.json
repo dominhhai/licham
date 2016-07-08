@@ -11,6 +11,7 @@
     "commander": "^2.9.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.10.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.10.3",
     "babel-register": "^6.9.0",
     "standard": "^7.1.2",

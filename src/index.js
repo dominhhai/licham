@@ -45,18 +45,37 @@ function printCalendar (year, month, lunarMonth, day, lunarDate) {
   var CELL_WIDTH = 10
   var TOTAL_WIDTH = (MAX_COL + 1) * (CELL_WIDTH + 1) + 2
   var HALF_WIDTH = Math.floor(TOTAL_WIDTH / 2)
-  var emptyCell = paddingLeft('', CELL_WIDTH) + '|'
+  var EMPTY_CELL = paddingLeft('', CELL_WIDTH) + '|'
+  var UNDER_LINE = '__________|'
 
-  console.log(padding(`Tháng ${month} năm ${year}`, TOTAL_WIDTH))
+  console.log(chalk.bgMagenta.bold(padding(`Tháng ${month} năm ${year}`, TOTAL_WIDTH)))
   if (day) {
     let jd = lunarDate.jd
     let canchi = getCanChi(lunarDate)
-    console.log(`\n${padding(`${getDayOfWeek(jd)}, ngày ${day}`, TOTAL_WIDTH)}`)
+    let gioHoangDao = getGioHoangDao(jd)
+    console.log('')
+    console.log(chalk.bold(padding(`${getDayOfWeek(jd)}, ngày ${day}`, TOTAL_WIDTH)))
     console.log(padding(`Tháng ${lunarDate.month}`, HALF_WIDTH) + padding(`Tháng ${canchi[1]}`, HALF_WIDTH))
-    console.log(padding(`Mùng ${lunarDate.day}`, HALF_WIDTH) + padding(`Ngày ${canchi[0]}`, HALF_WIDTH))
+    console.log(chalk.red.bold(padding(`Mùng ${lunarDate.day}`, HALF_WIDTH) + padding(`Ngày ${canchi[0]}`, HALF_WIDTH)))
     console.log(padding('', HALF_WIDTH) + padding(`Giờ ${getCanHour0(jd)} Tý`, HALF_WIDTH))
     console.log(padding(`Năm ${canchi[2]}`, HALF_WIDTH) + padding(`Tiết ${getTietKhi(jd)}`, HALF_WIDTH))
-    console.log(`\nGiờ hoàng đạo: ${getGioHoangDao(jd).join(', ')}`)
+    console.log('')
+    let curHoangDao = ''
+    for (let i = 0, j = gioHoangDao.length - 1; i <= j; i ++) {
+      curHoangDao += gioHoangDao[i]
+      if (i === 0) {
+        curHoangDao = `Giờ hoàng đạo: ${curHoangDao}`
+      }
+      if (i < j) {
+        curHoangDao += ', '
+        if (i > 0 && i % 4 === 0) {
+          console.log(chalk.bgRed(paddingRight(curHoangDao, TOTAL_WIDTH)))
+          curHoangDao = paddingLeft('', 15)
+        }
+      } else {
+        console.log(chalk.bgRed(paddingRight(curHoangDao, TOTAL_WIDTH)))
+      }
+    }
   }
   console.log(' ______________________________________________________________________________ ')
   console.log('| __________ __________ __________ __________ __________ __________ __________ |')
@@ -66,14 +85,16 @@ function printCalendar (year, month, lunarMonth, day, lunarDate) {
   var col = 0
   var solarWeek = ''
   var lunarWeek = ''
+  var underLine = ''
   for (let i = 0, len = lunarMonth.length - 1; i <= len; i++) {
     let date = lunarMonth[i]
     let index = getDayOfWeekIndex(date.jd)
 
     if (solarWeek === '' && col < index) {
       for (; col < index; col++) {
-        solarWeek += emptyCell
-        lunarWeek += emptyCell
+        solarWeek += EMPTY_CELL
+        lunarWeek += EMPTY_CELL
+        underLine += UNDER_LINE
       }
     }
 
@@ -82,14 +103,31 @@ function printCalendar (year, month, lunarMonth, day, lunarDate) {
     if (solarDay === 1 || lunarDay === 1) {
       lunarDay += `/${date.month}`
     }
-    solarWeek += `${paddingRight(solarDay, CELL_WIDTH)}|`
-    lunarWeek += `${paddingLeft(lunarDay, CELL_WIDTH)}|`
+    let curSolarDay = paddingRight(solarDay, CELL_WIDTH)
+    let curLunarDay = paddingLeft(lunarDay, CELL_WIDTH)
+    let curLine = UNDER_LINE
+    if (col === 0) {
+      curSolarDay = chalk.magenta(curSolarDay)
+    } else if (col === MAX_COL) {
+      curSolarDay = chalk.white(curSolarDay)
+    }
+    if (day && lunarDate.day === date.day && lunarDate.month === date.month) {
+      curSolarDay = chalk.bgRed.bold(curSolarDay)
+      curLunarDay = chalk.bgRed.bold.white(curLunarDay)
+      curLine = `${chalk.bgRed.bold(curLine.substr(0, CELL_WIDTH))}|`
+    } else {
+      curLunarDay = chalk.red(curLunarDay)
+    }
+    solarWeek += `${curSolarDay}|`
+    lunarWeek += `${curLunarDay}|`
+    underLine += curLine
     col++
 
     if (i === len && col < MAX_COL) {
       for (; col <= MAX_COL; col++) {
-        solarWeek += emptyCell
-        lunarWeek += emptyCell
+        solarWeek += EMPTY_CELL
+        lunarWeek += EMPTY_CELL
+        underLine += UNDER_LINE
       }
     }
 
@@ -98,9 +136,11 @@ function printCalendar (year, month, lunarMonth, day, lunarDate) {
 
       console.log(`||${solarWeek}|`)
       console.log(`||${lunarWeek}|`)
-      console.log('||__________|__________|__________|__________|__________|__________|__________||')
+      console.log(`||${underLine}|`)
+
       solarWeek = ''
       lunarWeek = ''
+      underLine = ''
     }
   }
   console.log('|______________________________________________________________________________|\n')
