@@ -1,2 +1,8 @@
 # Src
 src
+
+# Babel Config
+.babelrc
+
+# NPM Config
+.npmignore
