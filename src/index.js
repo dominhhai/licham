@@ -61,7 +61,7 @@ function printCalendar (year, month, lunarMonth, day, lunarDate) {
     console.log(padding(`Năm ${canchi[2]}`, HALF_WIDTH) + padding(`Tiết ${getTietKhi(jd)}`, HALF_WIDTH))
     console.log('')
     let curHoangDao = ''
-    for (let i = 0, j = gioHoangDao.length - 1; i <= j; i ++) {
+    for (let i = 0, j = gioHoangDao.length - 1; i <= j; i++) {
       curHoangDao += gioHoangDao[i]
       if (i === 0) {
         curHoangDao = `Giờ hoàng đạo: ${curHoangDao}`
